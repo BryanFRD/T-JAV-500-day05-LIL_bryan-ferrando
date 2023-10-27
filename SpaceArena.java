@@ -5,16 +5,20 @@ public class SpaceArena {
     private ArrayList<Monster> monsters = new ArrayList<Monster>();
     private ArrayList<SpaceMarine> spaceMarines = new ArrayList<SpaceMarine>();
 
-    public void enlistMonsters(Monster monster) {
-        if(!monsters.contains(monster)){
-            monsters.add(monster);
-        }
+    public void enlistMonsters(ArrayList<Monster> monsterList) {
+        monsterList.forEach(monster -> {
+            if(!monsters.contains(monster)){
+                monsters.add(monster);
+            }
+        });
     }
 
-    public void enlistSpaceMarines(SpaceMarine spaceMarine) {
-        if(!spaceMarines.contains(spaceMarine)){
-            spaceMarines.add(spaceMarine);
-        }
+    public void enlistSpaceMarines(ArrayList<SpaceMarine> spaceMarineList) {
+        spaceMarineList.forEach(spaceMarine -> {
+            if(!spaceMarines.contains(spaceMarine)){
+                spaceMarines.add(spaceMarine);
+            }
+        });
     }
 
     public boolean fight(){
