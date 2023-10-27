@@ -22,7 +22,7 @@ public abstract class Unit implements Fighter {
     }
 
     @Override
-    public int getAP() {
+    public int getAp() {
         return ap;
     }
 
