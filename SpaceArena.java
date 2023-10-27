@@ -32,30 +32,36 @@ public class SpaceArena {
             return false;
         }
 
-        SpaceMarine spaceMarine = spaceMarines.get(0);
-        Monster monster = monsters.get(0);
+        SpaceMarine spaceMarine = null;
+        Monster monster = null;
         boolean monsterTurn = false;
         while(true){
             if(monsters.isEmpty()){
                 System.out.println("The monsters are victorious.");
-                return false;
-            }
-            if(spaceMarines.isEmpty()){
-                System.out.println("The spaceMarines are victorious.");
-                return false;
+                break;
             }
 
-            if(spaceMarine.getHp() == 0){
-                monster.recoverAP();
+            if(spaceMarines.isEmpty()){
+                System.out.println("The spaceMarines are victorious.");
+                break;
+            }
+
+            if(spaceMarine == null || spaceMarine.getHp() == 0){
+                if(monster != null){
+                    monster.recoverAP();
+                }
                 spaceMarines.remove(0);
                 spaceMarine = spaceMarines.get(0);
-                System.out.println("");
+                System.out.println(spaceMarine.getName() + " has entered the arena.");
             }
-            if(monster.getHp() == 0){
-                spaceMarine.recoverAP();
+
+            if(monster == null || monster.getHp() == 0){
+                if(spaceMarine != null){
+                    spaceMarine.recoverAP();
+                }
                 monsters.remove(0);
                 monster = monsters.get(0);
-                System.out.println("");
+                System.out.println(monster.getName() + " has entered the arena.");
             }
 
             if(monsterTurn){
@@ -73,6 +79,8 @@ public class SpaceArena {
             }
             monsterTurn = !monsterTurn;
         }
+
+        return true;
     }
 
 }
