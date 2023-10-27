@@ -50,7 +50,13 @@ public class SpaceArena {
                 if(monster != null){
                     monster.recoverAP();
                 }
-                spaceMarines.remove(0);
+                if(spaceMarine != null){
+                    spaceMarines.remove(0);
+                }
+                if(spaceMarines.isEmpty()){
+                    continue;
+                }
+
                 spaceMarine = spaceMarines.get(0);
                 System.out.println(spaceMarine.getName() + " has entered the arena.");
             }
@@ -59,22 +65,30 @@ public class SpaceArena {
                 if(spaceMarine != null){
                     spaceMarine.recoverAP();
                 }
-                monsters.remove(0);
+                if(monster != null){
+                    monsters.remove(0);
+                }
+                if(monsters.isEmpty()){
+                    continue;
+                }
+
                 monster = monsters.get(0);
                 System.out.println(monster.getName() + " has entered the arena.");
             }
 
             if(monsterTurn){
-                if(monster.closeTo != null || monster.closeTo != spaceMarine){
-                    monster.moveCloseTo(spaceMarine);
-                } else {
-                    monster.attack(spaceMarine);
+                System.out.println(monster.getHp());
+                if(!monster.attack(spaceMarine)){
+                    if(monster.closeTo == null || monster.closeTo != spaceMarine){
+                        monster.moveCloseTo(spaceMarine);
+                    }
                 }
             } else {
-                if(spaceMarine.closeTo != null || spaceMarine.closeTo != monster){
-                    spaceMarine.moveCloseTo(monster);
-                } else {
-                    spaceMarine.attack(monster);
+                System.out.println(spaceMarine.getHp());
+                if(!spaceMarine.attack(monster)){
+                    if((spaceMarine.closeTo == null || spaceMarine.closeTo != monster) && spaceMarine.getWeapon().isMelee()){
+                        spaceMarine.moveCloseTo(monster);
+                    }
                 }
             }
             monsterTurn = !monsterTurn;

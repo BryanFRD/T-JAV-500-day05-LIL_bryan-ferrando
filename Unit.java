@@ -28,7 +28,7 @@ public abstract class Unit implements Fighter {
 
     @Override
     public void receiveDamage(int damage) {
-        if (damage < 0) {
+        if (damage <= 0) {
             return;
         }
         if (damage > hp) {

@@ -14,14 +14,14 @@ public class RadScorpion extends Monster {
             return false;
         }
         if (closeTo != fighter) {
-            System.out.println(getName() + ": I'm too far away from " + fighter.getName());
+            System.out.println(getName() + ": I'm too far away from " + fighter.getName() + ".");
             return false;
         }
         if (ap < apcost) {
             return false;
         }
         ap -= apcost;
-        System.out.println(getName() + " attacks " + fighter.getName());
+        System.out.println(getName() + " attacks " + fighter.getName() + ".");
 
         int dmg = damage * (fighter instanceof AssaultTerminator ? 2 : 1);
         fighter.receiveDamage(dmg);
