@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class SpaceArena {
 
     private ArrayList<Monster> monsters = new ArrayList<Monster>();
     private ArrayList<SpaceMarine> spaceMarines = new ArrayList<SpaceMarine>();
 
-    public void enlistMonsters(ArrayList<Monster> monsterList) {
+    public void enlistMonsters(List<Monster> monsterList) {
         monsterList.forEach(monster -> {
             if(!monsters.contains(monster)){
                 monsters.add(monster);
@@ -13,7 +14,7 @@ public class SpaceArena {
         });
     }
 
-    public void enlistSpaceMarines(ArrayList<SpaceMarine> spaceMarineList) {
+    public void enlistSpaceMarines(List<SpaceMarine> spaceMarineList) {
         spaceMarineList.forEach(spaceMarine -> {
             if(!spaceMarines.contains(spaceMarine)){
                 spaceMarines.add(spaceMarine);
