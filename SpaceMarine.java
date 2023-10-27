@@ -41,4 +41,11 @@ public class SpaceMarine extends Unit {
         return true;
     }
 
+    @Override
+    public void recoverAP() {
+        ap += 9;
+        if (ap > 50) {
+            ap = 50;
+        }
+    }
 }
