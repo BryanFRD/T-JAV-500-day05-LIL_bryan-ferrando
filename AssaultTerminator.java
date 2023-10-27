@@ -7,6 +7,6 @@ public class AssaultTerminator extends SpaceMarine {
 
     @Override
     public void receiveDamage(int damage) {
-        super.receiveDamage(damage - 3);
+        super.receiveDamage(Math.max(1, damage - 3));
     }
 }
