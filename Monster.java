@@ -22,16 +22,14 @@ public abstract class Monster extends Unit {
 
     @Override
     public boolean attack(Fighter fighter) {
-        if (fighter == null) {
+        if (fighter == null || ap < apcost) {
             return false;
         }
         if (closeTo != fighter) {
             System.out.println(getName() + ": I'm too far away from " + fighter.getName() + ".");
             return false;
         }
-        if (ap < apcost) {
-            return false;
-        }
+
         ap -= apcost;
         System.out.println(getName() + " attacks " + fighter.getName() + ".");
         fighter.receiveDamage(damage);

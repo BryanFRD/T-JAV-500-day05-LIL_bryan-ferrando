@@ -9,13 +9,4 @@ public class SuperMutant extends Monster {
         apcost = 20;
     }
 
-    @Override
-    public void recoverAP() {
-        ap += 7;
-        if (ap > 20) {
-            ap = 20;
-        }
-        hp = Math.min(170, hp + 10);
-    }
-
 }

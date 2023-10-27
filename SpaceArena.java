@@ -5,6 +5,9 @@ public class SpaceArena {
 
     private ArrayList<Monster> monsters = new ArrayList<Monster>();
     private ArrayList<SpaceMarine> spaceMarines = new ArrayList<SpaceMarine>();
+    private SpaceMarine spaceMarine;
+    private Monster monster;
+    private boolean monsterTurn = false;
 
     public void enlistMonsters(List<Monster> monsterList) {
         monsterList.forEach(monster -> {
@@ -31,11 +34,18 @@ public class SpaceArena {
             System.out.println("Those cowards ran away.");
             return false;
         }
-        SpaceMarine spaceMarine = spaceMarines.get(0);
-        System.out.println(spaceMarine.getName() + " has entered the arena.");
-        Monster monster = monsters.get(0);
-        System.out.println(monster.getName() + " has entered the arena.");
-        boolean monsterTurn = false;
+
+        if(spaceMarine == null || spaceMarine.getHp() == 0){
+            spaceMarine = spaceMarines.get(0);
+            System.out.println(spaceMarine.getName() + " has entered the arena.");
+        }
+
+        if(monster == null || monster.getHp() == 0){
+            monster = monsters.get(0);
+            System.out.println(monster.getName() + " has entered the arena.");
+            monsterTurn = false;
+        }
+
         while(true){
             if(spaceMarines.isEmpty()){
                 System.out.println("The monsters are victorious.");
@@ -47,14 +57,8 @@ public class SpaceArena {
                 break;
             }
 
-            if(spaceMarine.getHp() == 0 && monster.getHp() == 0){
-                monsterTurn = false;
-            }
-
             if(spaceMarine.getHp() == 0){
-                if(monster.getHp() > 0){
-                    monster.recoverAP();
-                }
+                monster.recoverAP();
 
                 spaceMarines.remove(0);
                 if(spaceMarines.isEmpty()){
@@ -62,13 +66,10 @@ public class SpaceArena {
                 }
                 spaceMarine = spaceMarines.get(0);
                 System.out.println(spaceMarine.getName() + " has entered the arena.");
-                monsterTurn = false;
             }
 
             if(monster.getHp() == 0){
-                if(spaceMarine.getHp() > 0){
-                    spaceMarine.recoverAP();
-                }
+                spaceMarine.recoverAP();
 
                 monsters.remove(0);
                 if(monsters.isEmpty()){
@@ -81,7 +82,7 @@ public class SpaceArena {
             }
 
             if(monsterTurn){
-                if(monster.getAp() <= 0 && monster.getApcost() > monster.getAp()){
+                if(monster.getAp() <= 0 || monster.getApcost() > monster.getAp()){
                     monster.recoverAP();
                 } else {
                     if(!monster.attack(spaceMarine)){
