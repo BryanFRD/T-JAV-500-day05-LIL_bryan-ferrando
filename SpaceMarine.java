@@ -16,7 +16,7 @@ public abstract class SpaceMarine extends Unit {
             this.weapon.setEquipped(false);
         }
 
-        System.out.println(getName() + " has been equipped with a " + weapon.getName());
+        System.out.println(getName() + " has been equipped with a " + weapon.getName() + ".");
         this.weapon = weapon;
         weapon.setEquipped(true);
         return true;
