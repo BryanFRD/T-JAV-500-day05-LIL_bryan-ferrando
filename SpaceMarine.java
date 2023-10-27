@@ -23,13 +23,17 @@ public class SpaceMarine extends Unit {
             return false;
         }
         if (weapon == null) {
+            System.out.println("Hey, this is crazy. I'm not going to fight this empty-handed.");
             return false;
         }
         if (ap < weapon.getApcost()) {
             return false;
         }
-        if (weapon.isMelee() && closeTo != fighter) {
-            return false;
+        if (weapon.isMelee()) {
+            if(closeTo != fighter) {
+                System.out.println(getName() + ": I'm too far away from " + fighter.getName() + ".");
+                return false;
+            }
         }
         ap -= weapon.getApcost();
         weapon.attack();

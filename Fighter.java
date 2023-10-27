@@ -6,7 +6,7 @@ public interface Fighter {
     boolean moveCloseTo(Fighter fighter);
     void recoverAP();
     String getName();
-    int getAP();
+    int getAp();
     int getHp();
 
 }
