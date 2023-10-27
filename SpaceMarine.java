@@ -28,7 +28,7 @@ public abstract class SpaceMarine extends Unit {
             return false;
         }
         if (weapon == null) {
-            System.out.println("Hey, this is crazy. I'm not going to fight this empty-handed.");
+            System.out.println(getName() + ": Hey, this is crazy. I'm not going to fight this empty-handed.");
             return false;
         }
         if (ap < weapon.getApcost()) {
@@ -41,6 +41,7 @@ public abstract class SpaceMarine extends Unit {
             }
         }
         ap -= weapon.getApcost();
+        System.out.println(getName() + " attacks " + fighter.getName() + " with a " + weapon.getName() + ".");
         weapon.attack();
         fighter.receiveDamage(weapon.getDamage());
         return true;
@@ -54,6 +55,7 @@ public abstract class SpaceMarine extends Unit {
         }
     }
 
-
-
+    public Weapon getWeapon() {
+        return weapon;
+    }
 }
