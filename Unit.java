@@ -48,7 +48,7 @@ public abstract class Unit implements Fighter {
             return false;
         }
 
-        System.out.println(getName() + " is moving closer to " + fighter.getName());
+        System.out.println(getName() + " is moving closer to " + fighter.getName() + ".");
         this.closeTo = fighter;
         return true;
     }

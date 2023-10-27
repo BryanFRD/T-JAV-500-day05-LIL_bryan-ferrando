@@ -27,13 +27,13 @@ public abstract class Monster extends Unit {
             return false;
         }
         if (closeTo != fighter) {
-            System.out.println(getName() + ": I'm too far away from " + fighter.getName());
+            System.out.println(getName() + ": I'm too far away from " + fighter.getName() + ".");
             return false;
         }
         if (ap < apcost) {
             return false;        }
         ap -= apcost;
-        System.out.println(getName() + " attacks " + fighter.getName());
+        System.out.println(getName() + " attacks " + fighter.getName() + ".");
         fighter.receiveDamage(damage);
         return true;
     }

@@ -8,12 +8,17 @@ public class SpaceMarine extends Unit {
 
     @Override
     public boolean equip(Weapon weapon) {
-        if (this.weapon != null) {
+        if (weapon == null || weapon.isEquipped()) {
             return false;
+        }
+
+        if (this.weapon != null) {
+            this.weapon.setEquipped(false);
         }
 
         System.out.println(getName() + " has been equipped with a " + weapon.getName());
         this.weapon = weapon;
+        weapon.setEquipped(true);
         return true;
     }
 
