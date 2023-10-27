@@ -9,4 +9,12 @@ public class AssaultTerminator extends SpaceMarine {
     public void receiveDamage(int damage) {
         super.receiveDamage(Math.max(1, damage - 3));
     }
+
+    @Override
+    public void recoverAP() {
+        ap += 9;
+        if (ap > 30) {
+            ap = 30;
+        }
+    }
 }

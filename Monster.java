@@ -10,7 +10,6 @@ public abstract class Monster extends Unit {
     public int getDamage(){
         return damage;
     }
-
     public int getApcost(){
         return apcost;
     }

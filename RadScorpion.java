@@ -1,11 +1,12 @@
 public class RadScorpion extends Monster {
 
-    private static int id = 0;
+    private static int id = 1;
 
     public RadScorpion() {
-        super("RadScorpion #" + ++id, 80, 50);
+        super("RadScorpion #" + id++, 80, 50);
         System.out.println(name + ": Crrr!");
         damage = 25;
+        apcost = 8;
     }
 
     @Override
@@ -23,8 +24,9 @@ public class RadScorpion extends Monster {
         ap -= apcost;
         System.out.println(getName() + " attacks " + fighter.getName() + ".");
 
-        int dmg = damage * (fighter instanceof AssaultTerminator ? 2 : 1);
+        int dmg = damage * (fighter instanceof AssaultTerminator ? 1 : 2);
         fighter.receiveDamage(dmg);
         return true;
     }
+
 }

@@ -31,7 +31,7 @@ public abstract class Unit implements Fighter {
         if (damage <= 0) {
             return;
         }
-        if (damage > hp) {
+        if (damage >= hp) {
             hp = 0;
         } else {
             hp -= damage;

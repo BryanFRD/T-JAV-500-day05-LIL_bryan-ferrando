@@ -31,66 +31,77 @@ public class SpaceArena {
             System.out.println("Those cowards ran away.");
             return false;
         }
-
-        SpaceMarine spaceMarine = null;
-        Monster monster = null;
+        SpaceMarine spaceMarine = spaceMarines.get(0);
+        System.out.println(spaceMarine.getName() + " has entered the arena.");
+        Monster monster = monsters.get(0);
+        System.out.println(monster.getName() + " has entered the arena.");
         boolean monsterTurn = false;
         while(true){
-            if(monsters.isEmpty()){
+            if(spaceMarines.isEmpty()){
                 System.out.println("The monsters are victorious.");
                 break;
             }
 
-            if(spaceMarines.isEmpty()){
+            if(monsters.isEmpty()){
                 System.out.println("The spaceMarines are victorious.");
                 break;
             }
 
-            if(spaceMarine == null || spaceMarine.getHp() == 0){
-                if(monster != null){
+            if(spaceMarine.getHp() == 0 && monster.getHp() == 0){
+                monsterTurn = false;
+            }
+
+            if(spaceMarine.getHp() == 0){
+                if(monster.getHp() > 0){
                     monster.recoverAP();
                 }
-                if(spaceMarine != null){
-                    spaceMarines.remove(0);
-                }
+
+                spaceMarines.remove(0);
                 if(spaceMarines.isEmpty()){
                     continue;
                 }
-
                 spaceMarine = spaceMarines.get(0);
                 System.out.println(spaceMarine.getName() + " has entered the arena.");
+                monsterTurn = false;
             }
 
-            if(monster == null || monster.getHp() == 0){
-                if(spaceMarine != null){
+            if(monster.getHp() == 0){
+                if(spaceMarine.getHp() > 0){
                     spaceMarine.recoverAP();
                 }
-                if(monster != null){
-                    monsters.remove(0);
-                }
+
+                monsters.remove(0);
                 if(monsters.isEmpty()){
                     continue;
                 }
 
                 monster = monsters.get(0);
                 System.out.println(monster.getName() + " has entered the arena.");
+                monsterTurn = false;
             }
 
             if(monsterTurn){
-                System.out.println(monster.getHp());
-                if(!monster.attack(spaceMarine)){
-                    if(monster.closeTo == null || monster.closeTo != spaceMarine){
-                        monster.moveCloseTo(spaceMarine);
+                if(monster.getAp() <= 0 && monster.getApcost() > monster.getAp()){
+                    monster.recoverAP();
+                } else {
+                    if(!monster.attack(spaceMarine)){
+                        if(monster.closeTo == null || monster.closeTo != spaceMarine){
+                            monster.moveCloseTo(spaceMarine);
+                        }
                     }
                 }
             } else {
-                System.out.println(spaceMarine.getHp());
-                if(!spaceMarine.attack(monster)){
-                    if((spaceMarine.closeTo == null || spaceMarine.closeTo != monster) && spaceMarine.getWeapon().isMelee()){
-                        spaceMarine.moveCloseTo(monster);
+                if(spaceMarine.getAp() <= 0 || spaceMarine.getWeapon().getApcost() > spaceMarine.getAp()){
+                    spaceMarine.recoverAP();
+                } else {
+                    if(!spaceMarine.attack(monster)){
+                        if((spaceMarine.closeTo == null || spaceMarine.closeTo != monster) && spaceMarine.getWeapon().isMelee()){
+                            spaceMarine.moveCloseTo(monster);
+                        }
                     }
                 }
             }
+
             monsterTurn = !monsterTurn;
         }
 
