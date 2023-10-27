@@ -5,7 +5,7 @@ public class SpaceArena {
     private ArrayList<Monster> monsters = new ArrayList<Monster>();
     private ArrayList<SpaceMarine> spaceMarines = new ArrayList<SpaceMarine>();
 
-    public void enlistMonters(Monster monster) {
+    public void enlistMonsters(Monster monster) {
         if(!monsters.contains(monster)){
             monsters.add(monster);
         }
