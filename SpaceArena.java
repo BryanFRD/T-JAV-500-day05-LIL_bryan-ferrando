@@ -59,13 +59,13 @@ public class SpaceArena {
             }
 
             if(monsterTurn){
-                if(!(monster.closeTo == null)){
+                if(monster.closeTo != null || monster.closeTo != spaceMarine){
                     monster.moveCloseTo(spaceMarine);
                 } else {
                     monster.attack(spaceMarine);
                 }
             } else {
-                if(!(spaceMarine.closeTo == null)){
+                if(spaceMarine.closeTo != null || spaceMarine.closeTo != monster){
                     spaceMarine.moveCloseTo(monster);
                 } else {
                     spaceMarine.attack(monster);
