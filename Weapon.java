@@ -12,6 +12,8 @@ public abstract class Weapon {
         this.melee = melee;
     }
 
+    public abstract void attack();
+
     public String getName() {
         return name;
     }
