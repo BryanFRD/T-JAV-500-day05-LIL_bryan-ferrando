@@ -4,6 +4,7 @@ public class RadScorpion extends Monster {
 
     public RadScorpion() {
         super("RadScorpion #" + ++id, 80, 50);
+        damage = 25;
     }
 
     @Override
