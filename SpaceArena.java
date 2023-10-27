@@ -32,35 +32,31 @@ public class SpaceArena {
             return false;
         }
 
-        while(!monsters.isEmpty() && !spaceMarines.isEmpty()){
-            for(int i = 0; i < spaceMarines.size(); i++){
+        Fighter fighter = spaceMarines.get(0);
+        while(true){
+            if(fighter instanceof SpaceMarine){
                 if(monsters.isEmpty()){
+                    System.out.println("Space Marines win!");
                     break;
                 }
-                if(spaceMarines.get(i).getHp() <= 0){
-                    spaceMarines.remove(i);
-                    i--;
-                    continue;
-                }
-                Monster monster = monsters.get(0);
-                spaceMarines.get(i).attack(monster);
-                if(monster.getHp() <= 0){
-                    monsters.remove(0);
-                }
-            }
-            for(int i = 0; i < monsters.size(); i++){
+                fighter = monsters.get(0);
+            } else {
                 if(spaceMarines.isEmpty()){
+                    System.out.println("Monsters win!");
                     break;
                 }
-                if(monsters.get(i).getHp() <= 0){
-                    monsters.remove(i);
-                    i--;
-                    continue;
-                }
-                SpaceMarine spaceMarine = spaceMarines.get(0);
-                monsters.get(i).attack(spaceMarine);
-                if(spaceMarine.getHp() <= 0){
-                    spaceMarines.remove(0);
+                fighter = spaceMarines.get(0);
+            }
+
+            if(fighter.attack(fighter instanceof SpaceMarine ? monsters.get(0) : spaceMarines.get(0))){
+                if(fighter instanceof SpaceMarine){
+                    if(monsters.get(0).getHp() == 0){
+                        monsters.remove(0);
+                    }
+                } else {
+                    if(spaceMarines.get(0).getHp() == 0){
+                        spaceMarines.remove(0);
+                    }
                 }
             }
         }
