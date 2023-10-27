@@ -9,6 +9,7 @@ public class SpaceArena {
     public void enlistMonsters(List<Monster> monsterList) {
         monsterList.forEach(monster -> {
             if(!monsters.contains(monster)){
+                System.out.println(monster.getName() + " has entered the arena.");
                 monsters.add(monster);
             }
         });
@@ -17,6 +18,7 @@ public class SpaceArena {
     public void enlistSpaceMarines(List<SpaceMarine> spaceMarineList) {
         spaceMarineList.forEach(spaceMarine -> {
             if(!spaceMarines.contains(spaceMarine)){
+                System.out.println(spaceMarine.getName() + " has entered the arena.");
                 spaceMarines.add(spaceMarine);
             }
         });
@@ -36,32 +38,29 @@ public class SpaceArena {
         while(true){
             if(fighter instanceof SpaceMarine){
                 if(monsters.isEmpty()){
-                    System.out.println("Space Marines win!");
-                    break;
+                    System.out.println("The monsters are victorious.");
+                    return true;
                 }
-                fighter = monsters.get(0);
             } else {
                 if(spaceMarines.isEmpty()){
-                    System.out.println("Monsters win!");
-                    break;
+                    System.out.println("The spaceMarines are victorious.");
+                    return true;
                 }
-                fighter = spaceMarines.get(0);
             }
 
-            if(fighter.attack(fighter instanceof SpaceMarine ? monsters.get(0) : spaceMarines.get(0))){
-                if(fighter instanceof SpaceMarine){
-                    if(monsters.get(0).getHp() == 0){
-                        monsters.remove(0);
-                    }
-                } else {
-                    if(spaceMarines.get(0).getHp() == 0){
+            Fighter target = fighter instanceof SpaceMarine ? monsters.get(0) : spaceMarines.get(0);
+            if(fighter.attack(target)){
+                if(target.getHp() == 0){
+                    if(target instanceof SpaceMarine)
                         spaceMarines.remove(0);
-                    }
+                    else
+                        monsters.remove(0);
                 }
+            } else {
+                fighter.moveCloseTo(target);
             }
+            fighter = target;
         }
-
-        return true;
     }
 
 }

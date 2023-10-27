@@ -1,4 +1,4 @@
-public class SpaceMarine extends Unit {
+public abstract class SpaceMarine extends Unit {
 
     protected Weapon weapon;
 
