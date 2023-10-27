@@ -31,7 +31,8 @@ public abstract class Monster extends Unit {
             return false;
         }
         if (ap < apcost) {
-            return false;        }
+            return false;
+        }
         ap -= apcost;
         System.out.println(getName() + " attacks " + fighter.getName() + ".");
         fighter.receiveDamage(damage);

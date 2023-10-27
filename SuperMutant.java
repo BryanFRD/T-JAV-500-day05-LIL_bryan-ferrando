@@ -3,7 +3,8 @@ public class SuperMutant extends Monster {
     private static int id = 0;
 
     protected SuperMutant() {
-        super("SuperMutant #" + ++id + ": Roaarrr!", 170, 20);
+        super("SuperMutant #" + ++id, 170, 20);
+        System.out.println(name + ": Roaarrr!");
         damage = 60;
     }
 

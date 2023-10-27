@@ -3,7 +3,8 @@ public class RadScorpion extends Monster {
     private static int id = 0;
 
     public RadScorpion() {
-        super("RadScorpion #" + ++id + ": Crrr!", 80, 50);
+        super("RadScorpion #" + ++id, 80, 50);
+        System.out.println(name + ": Crrr!");
         damage = 25;
     }
 
