@@ -58,7 +58,7 @@ public class SpaceArena {
             }
 
             if(spaceMarine.getHp() == 0){
-                monster.recoverAP();
+                //monster.recoverAP();
 
                 spaceMarines.remove(0);
                 if(spaceMarines.isEmpty()){
@@ -69,7 +69,7 @@ public class SpaceArena {
             }
 
             if(monster.getHp() == 0){
-                spaceMarine.recoverAP();
+                //spaceMarine.recoverAP();
 
                 monsters.remove(0);
                 if(monsters.isEmpty()){
@@ -88,12 +88,20 @@ public class SpaceArena {
                     } else if(monster.getAp() <= 0 || monster.getApcost() > monster.getAp()) {
                         monster.recoverAP();
                     }
+                } else {
+                    if(spaceMarine.getHp() <= 0){
+                        monster.recoverAP();
+                    }
                 }
             } else {
                 if(!spaceMarine.attack(monster)){
                     if((spaceMarine.closeTo == null || spaceMarine.closeTo != monster) && spaceMarine.getWeapon().isMelee()){
                         spaceMarine.moveCloseTo(monster);
                     } else if(spaceMarine.getAp() <= 0 || spaceMarine.getWeapon().getApcost() > spaceMarine.getAp()) {
+                        spaceMarine.recoverAP();
+                    }
+                } else {
+                    if(monster.getHp() <= 0){
                         spaceMarine.recoverAP();
                     }
                 }
