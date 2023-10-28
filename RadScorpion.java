@@ -24,7 +24,7 @@ public class RadScorpion extends Monster {
         ap -= apcost;
         System.out.println(getName() + " attacks " + fighter.getName() + ".");
 
-        int dmg = damage * (fighter instanceof AssaultTerminator ? 1 : 2);
+        int dmg = damage * ((fighter instanceof AssaultTerminator || fighter instanceof Monster) ? 1 : 2);
         fighter.receiveDamage(dmg);
         return true;
     }

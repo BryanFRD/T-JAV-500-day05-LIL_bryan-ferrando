@@ -82,23 +82,19 @@ public class SpaceArena {
             }
 
             if(monsterTurn){
-                if(monster.getAp() <= 0 || monster.getApcost() > monster.getAp()){
-                    monster.recoverAP();
-                } else {
-                    if(!monster.attack(spaceMarine)){
-                        if(monster.closeTo == null || monster.closeTo != spaceMarine){
-                            monster.moveCloseTo(spaceMarine);
-                        }
+                if(!monster.attack(spaceMarine)){
+                    if(monster.closeTo == null || monster.closeTo != spaceMarine){
+                        monster.moveCloseTo(spaceMarine);
+                    } else if(monster.getAp() <= 0 || monster.getApcost() > monster.getAp()) {
+                        monster.recoverAP();
                     }
                 }
             } else {
-                if(spaceMarine.getAp() <= 0 || spaceMarine.getWeapon().getApcost() > spaceMarine.getAp()){
-                    spaceMarine.recoverAP();
-                } else {
-                    if(!spaceMarine.attack(monster)){
-                        if((spaceMarine.closeTo == null || spaceMarine.closeTo != monster) && spaceMarine.getWeapon().isMelee()){
-                            spaceMarine.moveCloseTo(monster);
-                        }
+                if(!spaceMarine.attack(monster)){
+                    if((spaceMarine.closeTo == null || spaceMarine.closeTo != monster) && spaceMarine.getWeapon().isMelee()){
+                        spaceMarine.moveCloseTo(monster);
+                    } else if(spaceMarine.getAp() <= 0 || spaceMarine.getWeapon().getApcost() > spaceMarine.getAp()) {
+                        spaceMarine.recoverAP();
                     }
                 }
             }
