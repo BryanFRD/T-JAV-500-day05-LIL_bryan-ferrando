@@ -31,14 +31,14 @@ public abstract class SpaceMarine extends Unit {
             System.out.println(getName() + ": Hey, this is crazy. I'm not going to fight this empty-handed.");
             return false;
         }
+        if (ap < weapon.getApcost()) {
+            return false;
+        }
         if (weapon.isMelee()) {
             if(closeTo != fighter) {
                 System.out.println(getName() + ": I'm too far away from " + fighter.getName() + ".");
                 return false;
             }
-        }
-        if (ap < weapon.getApcost()) {
-            return false;
         }
         ap -= weapon.getApcost();
         System.out.println(getName() + " attacks " + fighter.getName() + " with a " + weapon.getName() + ".");
